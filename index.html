@@ -1,17 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <!-- <link rel="icon" type="image/svg+xml" href="/" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaurya Chauhan</title>
-  <script type="module" crossorigin src="/Shaurya/assets/index-BikmxrXH.js"></script>
-  <link rel="stylesheet" crossorigin href="Shaurya/assets/index-BB6V3U4c.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F6F3;
+      --surface: #FFFFFF;
+      --text-primary: #1A1A1A;
+      --text-secondary: #6B6B6B;
+      --text-muted: #9A9A9A;
+      --accent: #2D5BE3;
+      --accent-light: #EEF2FF;
+      --border: #E8E6E1;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+      --radius: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px 16px 48px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px 28px 28px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      display: block;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      opacity: 0.3;
+    }
+
+    .name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .school {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    /* ── Contact rows ── */
+    .contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-row:hover { color: var(--accent); }
+
+    .contact-row .icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0.55;
+    }
+
+    .contact-pair {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* ── Socials ── */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      color: var(--text-secondary);
+    }
+
+    .social-btn:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .social-btn svg { width: 18px; height: 18px; }
+
+    /* ── Action buttons ── */
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 12px;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+    }
+
+    .action-btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .action-btn.secondary {
+      background: transparent;
+      color: var(--text-primary);
+    }
+
+    .action-btn.primary:hover { background: #1E47C8; }
+    .action-btn.secondary:hover { background: var(--bg); }
+
+    .action-btn svg { width: 16px; height: 16px; }
+
+    /* ── Patent section ── */
+    .patent-section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 20px;
+      margin-top: 12px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .patent-card {
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+    }
+
+    .patent-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      background: var(--accent-light);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .patent-body { flex: 1; min-width: 0; }
+
+    .patent-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .patent-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .patent-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .patent-row span.label {
+      font-weight: 500;
+      color: var(--text-secondary);
+      min-width: 80px;
+    }
+
+    .patent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── QR Modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      padding: 24px;
+    }
+
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      max-width: 280px;
+      width: 100%;
+      transform: translateY(12px);
+      transition: transform 0.25s;
+    }
+
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .modal p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    #qr-canvas {
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 8px;
+    }
+
+    .modal-close {
+      width: 100%;
+      padding: 11px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    .modal-close:hover { background: var(--bg); }
+  </style>
 </head>
-
 <body>
-  <div id="root"></div>
-</body>
 
+<div class="card">
+  <!-- Hero Card -->
+  <div class="hero">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <img class="avatar" src="shaurya.jpg" alt="Shaurya Chauhan" onerror="this.style.background='#E8E6E1';this.src='';this.alt='SC';" />
+    </div>
+
+    <h1 class="name">Shaurya Chauhan</h1>
+    <div class="title">Student</div>
+    <div class="school">ODM International School</div>
+
+    <div class="contacts">
+      <a class="contact-row" href="mailto:shauryachr@gmail.com">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        shauryachr@gmail.com
+      </a>
+      <div class="contact-pair">
+        <a class="contact-row" href="tel:+917988757238">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11 19.8 19.8 0 0 1 1.61 2.34 2 2 0 0 1 3.6.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 7.9a16 16 0 0 0 6.05 6.05l.97-.97a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 15.26z"/></svg>
+          +91 79887 57238
+        </a>
+        <span class="contact-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          India
+        </span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Socials -->
+    <div class="socials">
+      <!-- Instagram -->
+      <a class="social-btn" href="https://instagram.com/shauryachr" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <!-- LinkedIn -->
+      <a class="social-btn" href="https://linkedin.com/in/shauryachr" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <!-- WhatsApp -->
+      <a class="social-btn" href="https://wa.me/917988757238" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </a>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="action-btn primary" onclick="downloadVCard()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Save Contact
+      </button>
+      <button class="action-btn secondary" onclick="openQR()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Scan QR
+      </button>
+    </div>
+  </div>
+
+  <!-- Patent Section -->
+  <div class="patent-section">
+    <div class="section-label">Patent</div>
+    <div class="patent-card">
+      <div class="patent-icon">
+        <img src="patent.jpg" alt="Patent" onerror="this.src='patent.png'" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" />
+      </div>
+      <div class="patent-body">
+        <div class="patent-title">Blower Drone for Cleaning of the Cricket Grounds</div>
+        <div class="patent-meta">
+          <div class="patent-row">
+            <span class="label">Patent No.</span>
+            592118
+          </div>
+          <div class="patent-row">
+            <span class="label">Application</span>
+            202511011827
+          </div>
+          <div class="patent-row">
+            <span class="label">Published</span>
+            June 12, 2026
+          </div>
+          <div class="patent-row">
+            <span class="label">Office</span>
+            India (IN)
+          </div>
+        </div>
+        <div class="patent-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Granted
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QR Modal -->
+<div class="modal-overlay" id="qr-modal" onclick="closeQR(event)">
+  <div class="modal">
+    <h3>Scan to Connect</h3>
+    <p>Point your camera at the QR code</p>
+    <canvas id="qr-canvas" width="200" height="200"></canvas>
+    <button class="modal-close" onclick="closeQRBtn()">Close</button>
+  </div>
+</div>
+
+<script>
+  function downloadVCard() {
+    const vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'FN:Shaurya Chauhan',
+      'N:Chauhan;Shaurya;;;',
+      'TITLE:Student',
+      'ORG:ODM International School',
+      'EMAIL;TYPE=WORK:shauryachr@gmail.com',
+      'TEL;TYPE=CELL:+917988757238',
+      'ADR;TYPE=HOME:;;India;;;;',
+      'END:VCARD'
+    ].join('\r\n');
+
+    const blob = new Blob([vcard], { type: 'text/vcard' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Shaurya_Chauhan.vcf';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  /* ── QR Code (no library, pure canvas) ── */
+  function openQR() {
+    drawQR();
+    document.getElementById('qr-modal').classList.add('open');
+  }
+
+  function closeQR(e) {
+    if (e.target === document.getElementById('qr-modal')) closeQRBtn();
+  }
+
+  function closeQRBtn() {
+    document.getElementById('qr-modal').classList.remove('open');
+  }
+
+  // Minimal QR using a public API rendered into canvas via image
+  function drawQR() {
+    const canvas = document.getElementById('qr-canvas');
+    const ctx = canvas.getContext('2d');
+    const url = encodeURIComponent('https://shauryachr.github.io/Shaurya');
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${url}&margin=10&color=1A1A1A&bgcolor=FFFFFF`;
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      ctx.clearRect(0, 0, 200, 200);
+      ctx.drawImage(img, 0, 0, 200, 200);
+    };
+    img.onerror = () => {
+      // fallback: draw placeholder
+      ctx.fillStyle = '#F7F6F3';
+      ctx.fillRect(0, 0, 200, 200);
+      ctx.fillStyle = '#6B6B6B';
+      ctx.font = '13px DM Sans, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('QR unavailable offline', 100, 100);
+    };
+    img.src = qrUrl;
+  }
+</script>
+</body>
 </html>
